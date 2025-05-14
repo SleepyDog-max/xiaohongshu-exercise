@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>小红书社交实践理解互动练习</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background: #f7f9fc;
+      color: #333;
+      padding: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .question {
+      display: none;
+    }
+    .question.active {
+      display: block;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #4caf50;
+      color: white;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .summary {
+      display: none;
+    }
+    textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      border-radius: 5px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div id="q1" class="question active">
+    <h3>1. 以下哪一项最能准确说明用户使用“momo”头像的目的？</h3>
+    <label><input type="radio" name="q1" value="A"> A. 推广个人品牌，增加账号曝光度</label><br>
+    <label><input type="radio" name="q1" value="B"> B. 用可爱形象吸引粉丝关注</label><br>
+    <label><input type="radio" name="q1" value="C"> C. 借助匿名身份保护个人隐私</label><br>
+    <label><input type="radio" name="q1" value="D"> D. 利用个性化推荐算法提高互动率</label><br>
+  </div>
+
+  <div id="q2" class="question">
+    <h3>2. 以下哪一项不是“标题党”常用的发文策略？</h3>
+    <label><input type="radio" name="q2" value="A"> A. 标题模糊，内容截然相反</label><br>
+    <label><input type="radio" name="q2" value="B"> B. 在正文中直接道歉澄清标题</label><br>
+    <label><input type="radio" name="q2" value="C"> C. 标题明确陈述产品真实功效</label><br>
+    <label><input type="radio" name="q2" value="D"> D. 制造情绪反转，引导读者误解</label><br>
+  </div>
+
+  <div id="q3" class="question">
+    <h3>3. 社交媒体中匿名群体行为的一个主要风险是：</h3>
+    <label><input type="radio" name="q3" value="A"> A. 促进线下真实社交关系发展</label><br>
+    <label><input type="radio" name="q3" value="B"> B. 通过化名增强理性讨论氛围</label><br>
+    <label><input type="radio" name="q3" value="C"> C. 更容易受到精准广告的干扰</label><br>
+    <label><input type="radio" name="q3" value="D"> D. 群体极化，可能引发网络暴力行为</label><br>
+  </div>
+
+  <div id="q4" class="question">
+    <h3>4. 请简要说明“小红书”中“种草”行为如何融合了真实分享与商业营销的双重性质。</h3>
+    <textarea name="q4"></textarea>
+  </div>
+
+  <div id="q5" class="question">
+    <h3>5. 请指出并简要说明一个与“知识网红”相关的伦理问题。</h3>
+    <textarea name="q5"></textarea>
+  </div>
+
+  <div id="summary" class="summary">
+    <h3>答题总结与解析：</h3>
+    <ul>
+      <li><strong>第1题正确答案：C</strong><br>
+      momo是小红书平台上用户保护隐私的新型社交策略。通过使用统一头像和昵称，用户可以避免被熟人识别，同时在遭遇网络暴力、被误解或追踪时获得表达自由。这是一种对社交风险的主动应对。</li>
+
+      <li><strong>第2题正确答案：C</strong><br>
+      “标题党”以制造误导为特征，常用“反转”、“模糊”或“自嘲”等策略吸引流量。相比之下，直接陈述产品真实信息并不符合“标题党”的诱导性和博眼球本质。</li>
+
+      <li><strong>第3题正确答案：D</strong><br>
+      匿名群体缺乏个体身份的约束，易导致极端言论蔓延，形成“网络暴力”或“情绪共鸣放大”的现象。这种群体极化使得社交平台上的讨论失去理性，破坏健康的舆论环境。</li>
+
+      <li><strong>第4题参考答案：</strong><br>
+      “种草”本是用户基于个人体验进行真实分享的行为，但随着平台商业化发展，许多笔记背后存在隐性广告推广意图。KOL或品牌通过软性营销手法吸引用户购买，用户往往难以分辨其内容是否中立客观，消费判断可能被误导。</li>
+
+      <li><strong>第5题参考答案：</strong><br>
+      “知识网红”以专业形象获得用户信任，若未公开广告合作关系，其推荐可能具有误导性。这不仅影响消费者自主判断权，也涉及信息披露的道德问题，甚至违反相关法规，破坏公众对知识传播者的信任基础。</li>
+    </ul>
+  </div>
+
+  <div style="text-align: center;">
+    <button onclick="prevQuestion()">上一题</button>
+    <button onclick="nextQuestion()">下一题</button>
+    <button onclick="restart()">重新开始</button>
+  </div>
+</div>
+
+<script>
+  let current = 1;
+  const total = 5;
+
+  function showQuestion(n) {
+    document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+    const el = document.getElementById(`q${n}`);
+    if (el) el.classList.add('active');
+    document.getElementById("summary").style.display = 'none';
+  }
+
+  function nextQuestion() {
+    if (current < total) {
+      current++;
+      showQuestion(current);
+    } else {
+      document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+      document.getElementById("summary").style.display = 'block';
+    }
+  }
+
+  function prevQuestion() {
+    if (current > 1) {
+      current--;
+      showQuestion(current);
+    }
+  }
+
+  function restart() {
+    current = 1;
+    showQuestion(current);
+    document.getElementById("summary").style.display = 'none';
+    document.querySelectorAll('input[type=radio]').forEach(i => i.checked = false);
+    document.querySelectorAll('textarea').forEach(i => i.value = '');
+  }
+</script>
+</body>
+</html>
